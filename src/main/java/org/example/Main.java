@@ -23,9 +23,12 @@ public class Main {
         System.out.println(welcomeMessage);
         System.out.println(startMessage);
         String exp = scan.next().replace(" ", ""); //Получаем выражение и для удобства убираем пробелы
+        System.out.println(calc(exp));
+    }
 
-
+    private static String calc(String exp) {
         //проверка наличия оператора в стоке
+        int result;
         int actionIndex = -1;
         for (int i = 0; i < act.length; i++) {
             if (exp.contains(act[i])) {
@@ -63,7 +66,6 @@ public class Main {
 
             if (a < 11 & b < 11) {// проверяем одно из условий
                 // считаем
-                int result;
                 switch (act[actionIndex]) {
                     case "+":
                         result = a + b;
@@ -82,12 +84,10 @@ public class Main {
                 if (isRoman) {
                     if (result >= 0) {
                         // если числа были арабские, возвращаем результат в арабском числе
-                        System.out.println(converter.arabianToRoman(result));
+                        return String.valueOf(converter.arabianToRoman(result));
                     } else {
                         throw new IllegalArgumentException(exceptionMessage1);
                     }
-                } else {
-                    System.out.println(result);
                 }
             } else {
                 throw new IllegalArgumentException(exceptionMessage4);
@@ -95,5 +95,6 @@ public class Main {
         } else {
             throw new IllegalArgumentException(exceptionMessage5);
         }
+        return String.valueOf(result);
     }
 }
